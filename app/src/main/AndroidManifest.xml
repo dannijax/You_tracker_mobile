@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.oluwadara.youtrackmobile.app.youtrackmobileapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="com.oluwadara.youtrackmobile.app.YouTrackMobileApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <service android:name="com.oluwadara.youtrackmobile.app.ui.tracker.TrackerService"
+            android:icon="@drawable/ic_place"
+            android:label="@string/service_name"/>
+        <service android:name="com.oluwadara.youtrackmobile.app.ui.tracker.MessengerService"
+            android:icon="@drawable/ic_place"
+            android:label="@string/service_name"/>
+        <activity
+            android:name="com.oluwadara.youtrackmobile.app.ui.base.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.oluwadara.youtrackmobile.app.ui.tracker.TrackerActivity" />
+        <activity
+            android:name="com.oluwadara.youtrackmobile.app.ui.tracker.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+    </application>
+
+</manifest>

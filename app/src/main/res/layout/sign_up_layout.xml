@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/cardview_dark_background">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/gutter_size"
+            android:layout_marginEnd="@dimen/gutter_size"
+            android:layout_marginStart="@dimen/gutter_size"
+            android:layout_marginTop="@dimen/gutter_size"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableLeft="@drawable/ic_email"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:drawablePadding="@dimen/gutter_size"
+                android:drawableStart="@drawable/ic_email"
+                android:maxLines="1"
+                android:maxLength="50"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableStart="@drawable/ic_action_lock_closed"
+                android:drawableLeft="@drawable/ic_action_lock_closed"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:layout_marginTop="@dimen/gutter_size"
+                android:maxLines="1"
+                android:maxLength="50"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"/>
+
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableLeft="@drawable/ic_account_box"
+                android:hint="@string/first_name"
+                android:drawablePadding="@dimen/gutter_size"
+                android:drawableStart="@drawable/ic_account_box"
+                android:layout_marginTop="@dimen/gutter_size"
+                android:maxLines="1"
+                android:maxLength="50"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"/>
+
+            <EditText
+                android:id="@+id/last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/last_name"
+                android:drawableLeft="@drawable/ic_account_box"
+                android:drawableStart="@drawable/ic_account_box"
+                android:drawablePadding="@dimen/gutter_size"
+                android:layout_marginTop="@dimen/gutter_size"
+                android:maxLines="1"
+                android:maxLength="50"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"/>
+
+            <EditText
+                android:id="@+id/phone"
+                android:inputType="phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/phone"
+                android:drawableLeft="@drawable/ic_dialpad"
+                android:drawableStart="@drawable/ic_dialpad"
+                android:drawablePadding="@dimen/gutter_size"
+                android:layout_marginTop="@dimen/gutter_size"
+                android:maxLines="1"
+                android:maxLength="50"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/cardview_dark_background"
+                android:layout_marginBottom="@dimen/gutter_size"/>
+            <Button
+                android:id="@+id/sign_up_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBlack"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/register"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@xml/progress_color"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "662108324290",
+    "firebase_url": "https://you-track-f7ffb.firebaseio.com",
+    "project_id": "you-track-f7ffb",
+    "storage_bucket": "you-track-f7ffb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662108324290:android:8fe451eeb823adef",
+        "android_client_info": {
+          "package_name": "com.oluwadara.youtrackmobile.app.youtrackmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662108324290-gl110eu0pjl5vmvmgl9fhv9timt4la82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oluwadara.youtrackmobile.app.youtrackmobileapp",
+            "certificate_hash": "e911b0c81bccd94d4cdc56147039f1236122802b"
+          }
+        },
+        {
+          "client_id": "662108324290-53jjuger6g7p3u8a148q8qlg7ll4qc9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOazEwUTcm7TqnyIuTC6kZGijNBb9zx8k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662108324290-53jjuger6g7p3u8a148q8qlg7ll4qc9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

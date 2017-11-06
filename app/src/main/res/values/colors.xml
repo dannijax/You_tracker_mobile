@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorGrey">#9E9E9E</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorPrimaryDark">#000000</color>
+    <color name="lightThemeColor">#E0E0E0</color>
+    <color name="textHintColor">#80000000</color>
+    <color name="error_color">#F44336</color>
+</resources>
