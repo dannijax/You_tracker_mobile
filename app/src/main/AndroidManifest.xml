@@ -19,7 +19,7 @@
         <service android:name="com.oluwadara.youtrackmobile.app.ui.tracker.TrackerService"
             android:icon="@drawable/ic_place"
             android:label="@string/service_name"/>
-        <service android:name="com.oluwadara.youtrackmobile.app.ui.tracker.MessengerService"
+        <service android:name="com.oluwadara.youtrackmobile.app.ui.tracker.TrackingService"
             android:icon="@drawable/ic_place"
             android:label="@string/service_name"/>
         <activity
@@ -39,6 +39,9 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b66be8213f5b3d94b9e43c744b049f9070fbf773" />
     </application>
 
 </manifest>

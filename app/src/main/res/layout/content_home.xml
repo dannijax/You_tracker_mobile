@@ -7,6 +7,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.oluwadara.youtrackmobile.app.ui.tracker.HomeActivity"
     tools:showIn="@layout/app_bar_home">
+    <Button
+        android:id="@+id/update"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update Location data"/>
 
 
     <ImageView
@@ -17,6 +24,7 @@
         android:src="@drawable/placeholder_user_photo" />
 
     <LinearLayout
+        android:id="@+id/data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profile_pic"
@@ -45,5 +53,6 @@
             android:textSize="@dimen/large_text" />
 
     </LinearLayout>
+
 
 </RelativeLayout>

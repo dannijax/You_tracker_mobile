@@ -84,6 +84,7 @@ public class LoginFragment extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                             mSignInButton.setEnabled(true);
                             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            Log.e(TAG, "onFailure: " + e.getMessage());
                         }
                     });
                 }

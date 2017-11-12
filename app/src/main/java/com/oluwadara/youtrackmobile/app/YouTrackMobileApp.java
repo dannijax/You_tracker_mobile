@@ -2,8 +2,10 @@ package com.oluwadara.youtrackmobile.app;
 
 import android.app.Application;
 
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+
 
 
 public class YouTrackMobileApp extends Application {
@@ -14,6 +16,7 @@ public class YouTrackMobileApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         mAuth = FirebaseAuth.getInstance();
         mDataBase = FirebaseDatabase.getInstance();
     }

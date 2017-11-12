@@ -1,10 +1,7 @@
 package com.oluwadara.youtrackmobile.app.ui.tracker;
 
-
-import android.app.Service;
+import android.app.IntentService;
 import android.content.Intent;
-import android.os.Binder;
-import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -31,8 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by danijax on 11/12/17.
+ */
 
-public class TrackerService extends Service {
+public class TrackingService extends IntentService {
 
     public static final String MNC = "mnc";
     public static final String MCC = "mcc";
@@ -48,13 +48,14 @@ public class TrackerService extends Service {
     private int mcc;
     private int cid;
     private int lac;
-
-    private final IBinder mBinder = new LocalBinder();
+    public TrackingService() {
+        super("TRACKER");
+    }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e(NOTIFICATION, "onStartCommand: " );
-        return super.onStartCommand(intent, flags, startId);
+    public void onCreate() {
+        super.onCreate();
+        setUp();
     }
 
     private void setUp() {
@@ -83,6 +84,7 @@ public class TrackerService extends Service {
                     location.setLongitude(response1.getLon());
                     location.setLatitude(response1.getLat());
                     location.setDateTime(getDateAsString());
+                    location.setAddress(response1.getAddress());
                     if (user != null){
                         database.getReference("users")
                                 .child(user.getUid())
@@ -139,26 +141,12 @@ public class TrackerService extends Service {
         return dtfOut.print(jodatime);
     }
 
-    @Nullable
     @Override
-    public IBinder onBind(Intent intent) {
-        setUp();
+    protected void onHandleIntent(@Nullable Intent intent) {
         intent.putExtra(MNC, mnc);
         intent.putExtra(MCC, mcc);
         intent.putExtra(CID, cid);
         intent.putExtra(LAC, lac);
         sendBroadcast(intent);
-        return mBinder;
-    }
-
-    class LocalBinder extends Binder {
-        TrackerService getService() {
-            // Return this instance of LocalService so clients can call public methods
-            return TrackerService.this;
-        }
-    }
-
-    interface CallBack {
-        void onSuccess();
     }
 }

@@ -1,23 +1,12 @@
 package com.oluwadara.youtrackmobile.app.ui.tracker;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
@@ -32,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,19 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.oluwadara.youtrackmobile.app.YouTrackMobileApp;
-import com.oluwadara.youtrackmobile.app.data.model.NetworkClient;
 import com.oluwadara.youtrackmobile.app.data.model.User;
 import com.oluwadara.youtrackmobile.app.ui.base.MainActivity;
 import com.oluwadara.youtrackmobile.app.youtrackmobileapp.R;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,27 +42,20 @@ public class HomeActivity extends AppCompatActivity
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_LOCATION = 111;
     private TextView mNameText;
     private TextView mEmailText;
+    private Button trackLocationButton;
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
-    TrackerService trackerService;
+    TrackingService trackerService;
     boolean mBound = false;
 
-    private ServiceConnection mConnection = new ServiceConnection() {
-
+    private BroadcastReceiver trackerReceiver = new BroadcastReceiver() {
         @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            TrackerService.LocalBinder binder = (TrackerService.LocalBinder) service;
-            trackerService = binder.getService();
-            mBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
+        public void onReceive(Context context, Intent intent) {
+            //String
         }
     };
+    private Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +77,13 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         mNameText = header.findViewById(R.id.name);
         mEmailText = header.findViewById(R.id.email);
+        trackLocationButton = findViewById(R.id.update);
+        trackLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startService(intent);
+            }
+        });
     }
 
     @Override
@@ -145,32 +125,15 @@ public class HomeActivity extends AppCompatActivity
         }
 
         requestPermission();
+        intent = new Intent(this, TrackingService.class);
+        startService(intent);
 
-        TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        GsmCellLocation cellLocation = (GsmCellLocation) tel.getCellLocation();
-        String networkOperator = tel.getNetworkOperator();
-        Log.e("TAG", "onCreate: " + tel.getNetworkOperator() );
-        int mcc = 0, mnc = 0;
-        if (networkOperator != null) {
-            mcc = Integer.parseInt(networkOperator.substring(0, 3));
-            mnc = Integer.parseInt(networkOperator.substring(3));
-            int cellId = cellLocation.getCid();
-            Log.e("TAG", "onCreate: " + mcc + " " + mnc  + " " + cellId );
-        }
-        Intent intent = new Intent(this, TrackerService.class);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        unbindService(mConnection);
+        stopService(intent);
         mBound = false;
     }
 
@@ -179,7 +142,16 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        IntentFilter filter = new IntentFilter(TrackingService.NOTIFICATION);
+        registerReceiver(trackerReceiver, filter);
 
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(trackerReceiver);
     }
 
     @Override

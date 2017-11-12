@@ -9,6 +9,7 @@ public class Location extends Model {
     private double longitude;
     private double latitude;
     private String dateTime;
+    private String address;
 
     public Location(double longitude, double latitude, String dateTime) {
         this.longitude = longitude;
@@ -57,5 +58,13 @@ public class Location extends Model {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
